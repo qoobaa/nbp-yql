@@ -1,0 +1,26 @@
+{
+  "name": "nbp-yql",
+  "version": "1.0.0",
+  "description": "JavaScript library to fetch exchange rates from National Bank of Poland through YQL",
+  "main": "index.js",
+  "scripts": {
+    "test": "phantomjs test/vendor/runner.js test/index.html?noglobals=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cowbell/nbp-yql.git"
+  },
+  "keywords": [
+    "nbp",
+    "yql"
+  ],
+  "author": "Kuba Kuźma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cowbell/nbp-yql/issues"
+  },
+  "homepage": "https://github.com/cowbell/nbp-yql",
+  "devDependencies": {
+    "phantomjs": "~1.9.7-1"
+  }
+}
