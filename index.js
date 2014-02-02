@@ -71,7 +71,7 @@ var NBP = {
 
         if (typeof options === "string") {
             return NBP.ajax('select * from xml where url="' + NBP.URL + '/' + options + '.xml"').then(function (result) {
-                return result.query.results;
+                return result.query.results.tabela_kursow;
             });
         } else {
             var type = options.type || "A",

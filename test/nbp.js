@@ -11,7 +11,7 @@ $(document).ready(function () {
     asyncTest("daily works without any arguments", function () {
         NBP.daily()
             .done(function (result) {
-                ok(result.hasOwnProperty("tabela_kursow"));
+                ok(result.hasOwnProperty("uid"));
             })
             .fail(function (result) {
                 ok(false, "request failed");
@@ -22,7 +22,7 @@ $(document).ready(function () {
     asyncTest("daily returns friday if sunday given", function () {
         NBP.daily({ date: "140202" })
             .done(function (result) {
-                equal(result.tabela_kursow.data_publikacji, "2014-01-31");
+                equal(result.data_publikacji, "2014-01-31");
             })
             .fail(function (result) {
                 ok(false, "request failed");
@@ -33,8 +33,8 @@ $(document).ready(function () {
     asyncTest("daily returns correct type", function () {
         NBP.daily({ type: "H", date: "140202" })
             .done(function (result) {
-                equal(result.tabela_kursow.typ, "H");
-                equal(result.tabela_kursow.data_publikacji, "2014-01-31");
+                equal(result.typ, "H");
+                equal(result.data_publikacji, "2014-01-31");
             })
             .fail(function (result) {
                 ok(false, "request failed");
