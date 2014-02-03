@@ -85,7 +85,7 @@
                 if (result) {
                     return daily(result);
                 } else {
-                    return $.Deferred().reject("code not found");
+                    return $.Deferred().reject(new Error("Code not found"));
                 }
             });
         }
