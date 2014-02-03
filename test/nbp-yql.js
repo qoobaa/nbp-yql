@@ -1,15 +1,7 @@
 $(document).ready(function () {
 
-    // PhantomJS uses file: protocol by default
-    NBP.YQL_URL = "http://query.yahooapis.com/v1/public/yql";
-
-    test("formatDate works properly", function () {
-        equal(NBP.formatDate(new Date(Date.parse("2014-02-02"))), "140202");
-        equal(NBP.formatDate(new Date(Date.parse("2014-12-31"))), "141231");
-    });
-
     asyncTest("daily works without any arguments", function () {
-        NBP.daily()
+        nbpDaily()
             .done(function (result) {
                 ok(result.hasOwnProperty("uid"));
             })
@@ -20,7 +12,7 @@ $(document).ready(function () {
     });
 
     asyncTest("daily returns friday if sunday given", function () {
-        NBP.daily({ date: "140202" })
+        nbpDaily({ date: "140202" })
             .done(function (result) {
                 equal(result.data_publikacji, "2014-01-31");
             })
@@ -31,7 +23,7 @@ $(document).ready(function () {
     });
 
     asyncTest("daily returns correct type", function () {
-        NBP.daily({ type: "H", date: "140202" })
+        nbpDaily({ type: "H", date: "140202" })
             .done(function (result) {
                 equal(result.typ, "H");
                 equal(result.data_publikacji, "2014-01-31");
@@ -43,23 +35,12 @@ $(document).ready(function () {
     });
 
     asyncTest("daily fails when code not found", function () {
-        NBP.daily({ type: "X" })
+        nbpDaily({ type: "X" })
             .done(function (result) {
                 ok(false);
             })
             .fail(function (result) {
                 ok(true);
-            })
-            .always(start);
-    });
-
-    asyncTest("dir works without any arguments", function () {
-        NBP.dir()
-            .done(function (result) {
-                ok(result.length > 5000);
-            })
-            .fail(function (result) {
-                ok(false, "request failed");
             })
             .always(start);
     });
