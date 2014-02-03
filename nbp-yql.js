@@ -57,9 +57,7 @@
     };
 
     function daily(options) {
-        if (arguments.length === 0) {
-            options = "LastA";
-        }
+        options || (options = "LastA");
 
         if (typeof options === "string") {
             return ajax('select * from xml where url="' + URL + '/' + options + '.xml"').then(function (result) {
