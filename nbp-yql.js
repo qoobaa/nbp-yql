@@ -42,7 +42,7 @@
         options.size || (options.size = LIMIT);
         options.results || (options.results = []);
 
-        return ajax('select * from csv(' + options.offset + ', ' + options.size + ') where url="' + URL + '/dir.txt"').then(function (result) {
+        return ajax('SELECT * FROM csv(' + options.offset + ', ' + options.size + ') WHERE url="' + URL + '/dir.txt"').then(function (result) {
             result.query.results.row.forEach(function (row) {
                 options.results.push(row.col0);
             });
@@ -60,7 +60,7 @@
         options || (options = "LastA");
 
         if (typeof options === "string") {
-            return ajax('select * from xml where url="' + URL + '/' + options + '.xml"').then(function (result) {
+            return ajax('SELECT * FROM xml WHERE url="' + URL + '/' + options + '.xml"').then(function (result) {
                 return result.query.results.tabela_kursow;
             });
         } else {
