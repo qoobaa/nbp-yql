@@ -3,8 +3,8 @@
         LIMIT = 5000,
         YQL_URL = "https://query.yahooapis.com/v1/public/yql";
 
-    function ajax(q) {
-        return $.ajax(YQL_URL, { data: { format: "json", q: q } }).then(function (result) {
+    function yql(query) {
+        return $.ajax(YQL_URL, { data: { format: "json", q: query } }).then(function (result) {
             if (!result.hasOwnProperty("query") ||
                 !result.query.hasOwnProperty("results") ||
                 result.query.results === null) {
@@ -42,7 +42,7 @@
         options.size || (options.size = LIMIT);
         options.results || (options.results = []);
 
-        return ajax('SELECT * FROM csv(' + options.offset + ', ' + options.size + ') WHERE url="' + URL + '/dir.txt"').then(function (result) {
+        return yql('SELECT * FROM csv(' + options.offset + ', ' + options.size + ') WHERE url="' + URL + '/dir.txt"').then(function (result) {
             result.query.results.row.forEach(function (row) {
                 options.results.push(row.col0);
             });
@@ -60,7 +60,7 @@
         options || (options = "LastA");
 
         if (typeof options === "string") {
-            return ajax('SELECT * FROM xml WHERE url="' + URL + '/' + options + '.xml"').then(function (result) {
+            return yql('SELECT * FROM xml WHERE url="' + URL + '/' + options + '.xml"').then(function (result) {
                 return result.query.results.tabela_kursow;
             });
         } else {
