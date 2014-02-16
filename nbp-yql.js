@@ -15,26 +15,6 @@
         });
     };
 
-    function formatDate(date) {
-        var day, month, year;
-
-        day = date.getDate().toString();
-
-        if (day.length === 1) {
-            day = "0" + day;
-        }
-
-        month = (date.getMonth() + 1).toString();
-
-        if (month.length === 1) {
-            month = "0" + month;
-        }
-
-        year = date.getFullYear().toString().substr(2, 2);
-
-        return year + month + day;
-    };
-
     // YQL doesn't play nicely with sets containing 5000+ records - filtering manually
     function dir(options) {
         options || (options = {});
@@ -70,7 +50,7 @@
             type = type.toLowerCase();
 
             if (typeof date !== "string") {
-                date = formatDate(date);
+                date = date.toISOString().substr(0, 10).replace(/[^0-9]/g, "");
             }
 
             return dir().then(function (codes) {
