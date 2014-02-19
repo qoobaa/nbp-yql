@@ -23,7 +23,7 @@ $(document).ready(function () {
     });
 
     asyncTest("daily returns correct type", function () {
-        nbpDaily({ type: "H", date: "140202" })
+        nbpDaily({ type: "H", date: new Date(1391299200000) }) // "2014-02-02"
             .done(function (result) {
                 equal(result.typ, "H");
                 equal(result.data_publikacji, "2014-01-31");

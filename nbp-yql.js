@@ -50,7 +50,7 @@
             type = type.toLowerCase();
 
             if (typeof date !== "string") {
-                date = date.toISOString().substr(0, 10).replace(/[^0-9]/g, "");
+                date = date.toISOString().substr(2, 8).replace(/[^0-9]/g, "");
             }
 
             return dir().then(function (codes) {
